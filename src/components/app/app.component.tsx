@@ -7,7 +7,7 @@ import '../../index.css'
 
 const App = () => {
   return (
-    <div className="">
+    <div className="flex flex-col content-center justify-center lg:flex-row">
       <Header />
       <Repositories />
     </div>
