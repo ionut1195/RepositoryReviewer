@@ -8,6 +8,7 @@ const GET_REPOSITORIES = gql`
         nodes {
           id
           name
+          description
           url
           languages(first: 2) {
             nodes {

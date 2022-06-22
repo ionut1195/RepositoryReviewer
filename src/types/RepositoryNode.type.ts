@@ -3,6 +3,7 @@ import {LanguageNode} from './Language.type'
 export type RepositoryNode = {
   id: string,
   name: string,
+  description: string,
   url: string,
   languages: LanguageNode
 }
