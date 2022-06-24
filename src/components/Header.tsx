@@ -1,20 +1,13 @@
 import React from "react"
-import {GET_USER} from "../hooks/useGetRepositories"
-import { useQuery } from "@apollo/client"
+
+import Search from "./Search"
 import {User} from '../types/User.type'
 
+const Header = ({user, getLazyData, handleSetUserName}:any) => {
 
-const Header = () => {
-  const {loading, error, data} = useQuery(GET_USER)
-
-  if (loading) return <div>Loading</div>
-  if (error) return <div>Encountered a random error</div>
-
-  const user:User = data.user
-  console.log(user)
   return (
     <div className="max-h-screen bg-blue-400 ">
-      <div className="container  grid grid-rows-2 max-w-[80vw] mx-auto align-items-center py-4">
+      <div className="container  grid grid-rows-3 max-w-[80vw] mx-auto align-items-center py-4">
         <div className="flex mx-4">
           <div className="w-20 h-20">
             <img className="rounded-full" src={user.avatarUrl} />
@@ -35,6 +28,7 @@ const Header = () => {
             </div>
           </div>
         </div>
+        <Search getLazyData={getLazyData} handleSetUserName={handleSetUserName} />
       </div>
     </div>
   )

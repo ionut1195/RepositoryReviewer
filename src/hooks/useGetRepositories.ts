@@ -1,8 +1,18 @@
 import {gql} from '@apollo/client'
 
-const GET_REPOSITORIES = gql`
-  query{
-    user(login: "ionut1195") {
+export const GET_DATA = gql`
+  query GetData($userName: String!){
+    user(login: $userName) {
+      id
+      login
+      bio
+      followers {
+        totalCount
+      }
+      following {
+        totalCount
+      }
+      avatarUrl
       repositories(first: 100, orderBy: {field: CREATED_AT, direction: DESC}) {
         totalCount
         nodes {
@@ -20,23 +30,5 @@ const GET_REPOSITORIES = gql`
       }
     }
   }
-
-`
-const GET_USER = gql`
-  query{
-    user(login: "ionut1195") {
-      id
-      login
-      bio
-      followers {
-        totalCount
-      }
-      following {
-        totalCount
-      }
-      avatarUrl
-    }
-  }
 `
 
-export  {GET_REPOSITORIES, GET_USER}
