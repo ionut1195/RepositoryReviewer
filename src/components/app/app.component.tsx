@@ -4,6 +4,7 @@ import Header from "../Header"
 import Search from "../Search"
 import { useLazyQuery } from "@apollo/client"
 import { useState } from "react"
+import { User } from "../../types/User.type"
 
 import '../../index.css'
 import { GET_DATA } from "../../hooks/useGetRepositories"
@@ -15,8 +16,8 @@ const App = () => {
       userName:userName
     }
   })
-  const handleSetUserName = ({name}:any) => {
-    setUserName(name)
+  const handleSetUserName = (userName: string) => {
+    setUserName(userName)
   }
 
   console.log(
@@ -27,18 +28,20 @@ const App = () => {
   )
   if (loading) return <div>Loading...</div>
   if (error) return <div>{error.message}</div>
-  if (data) return (
+  if (data) {
+    const allData:User = data.user
+    console.log(allData)
+    return (
     <div className="flex flex-col content-center justify-center lg:flex-row">
-    
      <Search getLazyData={getData} handleSetUserName={handleSetUserName} />
      {data ? ( 
      <div>
         <Header user={data.user} getLazyData={getData} handleSetUserName={handleSetUserName} />
-        <Repositories repositories={data.user} />
+        <Repositories nodes={allData.repositories.nodes} />
     </div>):
     <div>nothing to show yet</div>}
     </div>
-  )
+  )}
   return (
     <div>
       <input type='text' value={userName} onChange={(e) => {setUserName(e.target.value)}}></input>

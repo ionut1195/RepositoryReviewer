@@ -2,8 +2,16 @@ import React from "react"
 
 import Search from "./Search"
 import {User} from '../types/User.type'
+import { LazyQueryExecFunction } from "@apollo/client";
 
-const Header = ({user, getLazyData, handleSetUserName}:any) => {
+interface headerPropsType {
+  user: User,
+  getLazyData: LazyQueryExecFunction<any, {
+    userName: string;
+  }>,
+  handleSetUserName: (userName: string) => void
+}
+const Header = ({user, getLazyData, handleSetUserName}:headerPropsType) => {
 
   return (
     <div className="max-h-screen bg-blue-400 ">

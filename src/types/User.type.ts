@@ -1,4 +1,4 @@
-
+import {Repositories} from './RepositoryNode.type'
 type Followers = {
   totalCount: number
 }
@@ -9,5 +9,6 @@ export type User = {
   bio: string,
   followers: Followers,
   following: Followers,
-  avatarUrl: string
+  avatarUrl: string,
+  repositories: Repositories
 }

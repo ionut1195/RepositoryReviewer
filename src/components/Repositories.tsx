@@ -1,13 +1,16 @@
 import React from 'react'
 import {useLazyQuery} from '@apollo/client'
 import {GET_DATA} from '../hooks/useGetRepositories'
-import {RepositoriesType} from '../types/RepositoryNode.type'
+import {RepositoriesType, RepositoryNode} from '../types/RepositoryNode.type'
+import { User } from '../types/User.type'
 import { Repository } from './Repository'
 
-export default function Repositories({repositories}:any) {
-  console.log(repositories)
-  const rep:RepositoriesType = repositories
-  const repoList = rep.repositories.nodes.map(node => <Repository key={node.id} node={node}/>)
+type RepositoriesPropType = {
+  nodes: Array<RepositoryNode>
+}
+export default function Repositories({nodes}:RepositoriesPropType) {
+  console.log(nodes)
+  const repoList = nodes.map((node) => <Repository node={node}/>)
 
   return (
     <div className='flex flex-col'>{repoList}</div>

@@ -3,7 +3,7 @@ import {RepositoryNode} from '../types/RepositoryNode.type'
 import RatingStar from './RatingStar'
 
 interface RepositoryPropType  {
-  node: RepositoryNode
+  node: RepositoryNode,
 }
 export const Repository = ({node}:RepositoryPropType) => {
   return (
