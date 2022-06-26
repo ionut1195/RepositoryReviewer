@@ -1,22 +1,30 @@
 
 import {RepositoryNode} from '../types/RepositoryNode.type'
-import RatingStar from './RatingStar'
+// import RatingStar from './RatingStar'
+import { Rating } from 'react-simple-star-rating'
+import { useState } from 'react'
 
 interface RepositoryPropType  {
   node: RepositoryNode,
 }
 export const Repository = ({node}:RepositoryPropType) => {
+  const [rating, setRating] = useState(0)
+
+  const handleRating = (rate:number) => {
+    setRating(rate)
+  }
+
   return (
-    <div className='mt-5 px-2 container mx-auto lg:max-w-[80vw] max-h-[200px]'>
+    <div className='mt-5 border px-2 container mx-auto min-w-full  h-[150px]'>
       <div className='grid grid-cols-2'>
-        <div className='flex min-w-full col-span-2 text-lg bg-gray-200'>
+        <div className='flex  col-span-2 text-lg bg-gray-200'>
           <div className='mx-auto font-bold ray-500 textbo-2xl text'>{node.name}</div>
         </div>
         {node.description ? <div className='h-16 col-span-2 pt-2 mx-auto'>{node.description}</div> : <div className='h-16 col-span-2 pt-2 mx-auto'>This repository doens't have a description</div>}
-        <div className='grid grid-cols-2 col-span-2'>{node.languages.nodes.map(lang => <div style={{color: lang.color}} className='mx-auto font-bold'>{lang.name}</div>
-        )}</div>
+        <div className='grid grid-cols-2 col-span-2'>
+          {node.languages.nodes.map(lang => <div style={{color: lang.color}} className='mx-auto font-bold'>{lang.name}</div>)}
+        </div>
       </div>
-      <RatingStar />
     </div>
   )
 }

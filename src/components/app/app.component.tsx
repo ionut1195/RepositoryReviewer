@@ -1,7 +1,6 @@
 import React from "react"
 import Repositories from "../Repositories"
 import Header from "../Header"
-import Search from "../Search"
 import { useLazyQuery } from "@apollo/client"
 import { useState } from "react"
 import { User } from "../../types/User.type"
@@ -32,20 +31,17 @@ const App = () => {
     const allData:User = data.user
     console.log(allData)
     return (
-    <div className="flex flex-col content-center justify-center lg:flex-row">
-     <Search getLazyData={getData} handleSetUserName={handleSetUserName} />
-     {data ? ( 
-     <div>
+    <div className="flex flex-col content-center justify-center container mx-auto max-w-[1080px]">
         <Header user={data.user} getLazyData={getData} handleSetUserName={handleSetUserName} />
         <Repositories nodes={allData.repositories.nodes} />
-    </div>):
-    <div>nothing to show yet</div>}
     </div>
   )}
   return (
-    <div>
-      <input type='text' value={userName} onChange={(e) => {setUserName(e.target.value)}}></input>
-      <button onClick={() => getData()}>submit</button>
+    <div className="container mx-auto flex">
+      <div className="mx-auto flex flex-col">
+        <input type='text' value={userName} onChange={(e) => {setUserName(e.target.value)}}></input>
+        <button onClick={() => getData()}>submit</button>
+      </div>
     </div>
   )
 }
