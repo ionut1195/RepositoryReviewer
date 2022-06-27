@@ -4,11 +4,13 @@ import {RepositoryNode} from '../types/RepositoryNode.type'
 import { Rating } from 'react-simple-star-rating'
 import { useState } from 'react'
 import Modal from './Modal'
+import {Comment} from './Repositories'
 
 interface RepositoryPropType  {
   node: RepositoryNode,
+  comments: any
 }
-export const Repository = ({node}:RepositoryPropType) => {
+export const Repository = ({node, comments}:RepositoryPropType) => {
   const [rating, setRating] = useState(0)
 
   const handleRating = (rate:number) => {
@@ -25,7 +27,7 @@ export const Repository = ({node}:RepositoryPropType) => {
         <div className='grid grid-cols-2 col-span-2'>
           {node.languages.nodes.map(lang => <div style={{color: lang.color}} className='mx-auto font-bold'>{lang.name}</div>)}
         </div>
-        <Modal node={node}/>
+        <Modal node={node} comments={comments}/>
       </div>
     </div>
   )

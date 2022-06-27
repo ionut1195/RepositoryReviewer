@@ -4,9 +4,10 @@ import { RepositoryNode } from "../types/RepositoryNode.type";
 
 interface RepositoryPropType  {
     node: RepositoryNode,
+	comments: any
   }
 
-export default function Modal({node}:RepositoryPropType) {
+export default function Modal({node, comments}:RepositoryPropType) {
   const [showModal, setShowModal] = React.useState(false);
   return (
     <>
@@ -38,6 +39,7 @@ export default function Modal({node}:RepositoryPropType) {
                   </p>
                   <div>
                     <h3 className='font-bold'>Comments:</h3>
+					<div>{comments.map((comment:any) => <>{comment.content}</>)}</div>
                   </div>
                 </div>
                 {/*footer*/}
