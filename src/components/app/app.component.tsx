@@ -4,6 +4,7 @@ import Header from "../Header"
 import { useLazyQuery } from "@apollo/client"
 import { useState } from "react"
 import { User } from "../../types/User.type"
+import Search from "../Search"
 
 import '../../index.css'
 import { GET_DATA } from "../../hooks/useGetRepositories"
@@ -37,12 +38,7 @@ const App = () => {
     </div>
   )}
   return (
-    <div className="container mx-auto flex">
-      <div className="mx-auto flex flex-col">
-        <input type='text' value={userName} onChange={(e) => {setUserName(e.target.value)}}></input>
-        <button onClick={() => getData()}>submit</button>
-      </div>
-    </div>
+    <Search getLazyData={getData} handleSetUserName={handleSetUserName} />
   )
 }
 

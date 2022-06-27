@@ -15,7 +15,7 @@ interface headerPropsType {
 const Header = ({user, getLazyData, handleSetUserName}:headerPropsType) => {
 
   return (
-    <div className=" bg-blue-400 ">
+    <div className=" ">
       <div className="container  grid grid-rows-3 max-w-[80vw] mx-auto align-items-center py-4">
         <div className="flex mx-4">
           <div className="w-20 h-20">
@@ -25,14 +25,14 @@ const Header = ({user, getLazyData, handleSetUserName}:headerPropsType) => {
         </div>
         <div className="flex mt-3 text-xl">
           <div className="flex flex-col mx-4">
-            <div>Followers</div>
-            <div className="self-center">
+            <div className=" font-semibold">Followers</div>
+            <div className="self-center text-blue-700 font-bold">
             {user.followers.totalCount}
             </div>
           </div>
           <div className="flex flex-col">
-            <div>Following</div>
-            <div className="self-center">
+            <div className=" font-semibold">Following</div>
+            <div className="self-center text-blue-700 font-bold">
             {user.following.totalCount}
             </div>
           </div>

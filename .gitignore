@@ -2,9 +2,12 @@
 # 
 token
 src/app.config.js
+server/\.env
 
 # dependencies
 /node_modules
+server/node_modules
+server/package.json
 /.pnp
 .pnp.js
 
