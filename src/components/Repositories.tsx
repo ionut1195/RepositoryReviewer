@@ -5,17 +5,8 @@ import {RepositoriesType, RepositoryNode} from '../types/RepositoryNode.type'
 import { User } from '../types/User.type'
 import { Repository } from './Repository'
 import {gql, useQuery} from '@apollo/client'
+import { GET_COMMENTS } from '../hooks/useGetComments'
 
-const GET_COMMENTS = gql`
-	query getComments {
-		comment{
-		  id,
-		  author,
-		  content,
-		  repositoryId
-		}
-	  }
-`
 export type Comment = {
 	id: string,
 	author: string,
@@ -45,7 +36,7 @@ export default function Repositories({nodes}:RepositoriesPropType) {
 	console.log(comments)
 
   console.log(nodes)
-  const repoList = nodes.map((node) => <Repository node={node} comments={comments.filter((comment:any) => comment.repositoryId === node.id)}/>)
+  const repoList = nodes.map((node) => <Repository key={node.id} node={node} comments={comments.filter((comment:any) => comment.repositoryId === node.id)}/>)
 
   return (
     <div className='flex flex-col'>{repoList}</div>

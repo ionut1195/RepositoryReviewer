@@ -39,14 +39,12 @@ const mutation = new GraphQLObjectType({
 		addComment: {
 			type:  CommentType,
 			args: {
-				id: {type: GraphQLID},
 				author: {type: GraphQLNonNull(GraphQLString)},
 				content: {type: GraphQLNonNull(GraphQLString)},
 				repositoryId: {type: GraphQLNonNull(GraphQLString)},
 			},
 			resolve(parent, args){
 				const comment = new Comment({
-					id:args.id,
 					author: args.author,
 					content: args.content,
 					repositoryId: args.repositoryId

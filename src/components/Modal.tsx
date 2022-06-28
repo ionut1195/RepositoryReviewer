@@ -1,6 +1,7 @@
 import {FaGithub} from 'react-icons/fa'
 import React from "react";
 import { RepositoryNode } from "../types/RepositoryNode.type";
+import AddComment from "./AddComment"
 
 interface RepositoryPropType  {
     node: RepositoryNode,
@@ -37,10 +38,11 @@ export default function Modal({node, comments}:RepositoryPropType) {
                   <p className="my-4 text-slate-500 text-lg leading-relaxed">
                     {node.description ? node.description : "This repository doesn't have a description!"}
                   </p>
-                  <div>
+                  <div className='border-1'>
                     <h3 className='font-bold'>Comments:</h3>
-					<div>{comments.map((comment:any) => <>{comment.content}</>)}</div>
+					<ul>{comments.map((comment:any) => <li key={comment.id}>{comment.content}</li>)}</ul>
                   </div>
+				  <AddComment repositoryId={node.id}/>
                 </div>
                 {/*footer*/}
                 <div className="flex items-center justify-between p-3 border-t border-solid border-blue-700 rounded-b">
@@ -48,7 +50,7 @@ export default function Modal({node, comments}:RepositoryPropType) {
                         <p className=" text-slate-500 text-lg leading-relaxed">
                         See on
                         </p>
-                        <a href={node.url} target={'_blank'}>
+                        <a href={node.url} target={'_blank'} rel="noreferrer">
                             <FaGithub />
                         </a>
                     </div>
