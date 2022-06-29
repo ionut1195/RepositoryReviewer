@@ -2,10 +2,11 @@ import {FaGithub} from 'react-icons/fa'
 import React from "react";
 import { RepositoryNode } from "../types/RepositoryNode.type";
 import AddComment from "./AddComment"
+import {Comment} from './Repositories'
 
 interface RepositoryPropType  {
     node: RepositoryNode,
-	comments: any
+	comments: Array<Comment>
   }
 
 export default function Modal({node, comments}:RepositoryPropType) {
@@ -40,7 +41,7 @@ export default function Modal({node, comments}:RepositoryPropType) {
                   </p>
                   <div className='border-1'>
                     <h3 className='font-bold'>Comments:</h3>
-					<ul>{comments.map((comment:any) => 
+					<ul>{comments.map((comment) => 
 						<li key={comment.id}>
 							<h4 className='font-semibold border border-inherit'>{comment.author}:</h4>
 						{comment.content}</li>)}</ul>

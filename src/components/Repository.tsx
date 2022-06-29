@@ -8,7 +8,7 @@ import {Comment} from './Repositories'
 
 interface RepositoryPropType  {
   node: RepositoryNode,
-  comments: any
+  comments: Array<Comment>
 }
 export const Repository = ({node, comments}:RepositoryPropType) => {
  
