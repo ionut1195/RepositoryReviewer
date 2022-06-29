@@ -11,11 +11,7 @@ interface RepositoryPropType  {
   comments: any
 }
 export const Repository = ({node, comments}:RepositoryPropType) => {
-  const [rating, setRating] = useState(0)
-
-  const handleRating = (rate:number) => {
-    setRating(rate)
-  }
+ 
 
   return (
     <div className='mt-5 border-b-2 container mx-auto min-w-full  h-[11rem]'>

@@ -40,7 +40,10 @@ export default function Modal({node, comments}:RepositoryPropType) {
                   </p>
                   <div className='border-1'>
                     <h3 className='font-bold'>Comments:</h3>
-					<ul>{comments.map((comment:any) => <li key={comment.id}>{comment.content}</li>)}</ul>
+					<ul>{comments.map((comment:any) => 
+						<li key={comment.id}>
+							<h4 className='font-semibold border border-inherit'>{comment.author}:</h4>
+						{comment.content}</li>)}</ul>
                   </div>
 				  <AddComment repositoryId={node.id}/>
                 </div>

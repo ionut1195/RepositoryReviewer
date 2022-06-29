@@ -5,7 +5,7 @@ import {useState} from 'react'
 import { GET_COMMENTS } from '../hooks/useGetComments'
 
 type addCommentType = {
-	repositoryId:string
+	repositoryId: string
 }
 
 // interface CommentDetails {
@@ -19,20 +19,22 @@ export default function AddComment({repositoryId}:addCommentType) {
 	const [content, setContent] = useState('')
 
 	const [addComment] = useMutation(ADD_COMMENT, {
+		context:{clientName: 'comments-client'},
 		variables: {author, content, repositoryId},
 		update(cache, {data: {addComment}}){
-			const {comments}:any = cache.readQuery({query: 
+			const {comment}:any = cache.readQuery({query: 
 				GET_COMMENTS});
 			cache.writeQuery({
 				query: GET_COMMENTS,
-				data: {comments: [...comments, addComment]}
+				data: {comment: [...comment, addComment]}
 			})
 		}
 	})
 
-	const onSubmit = (e:any) => {
+
+	const onSubmit = (e:React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		addComment({author, content, repositoryId})
+		addComment()
 		setAuthor('')
 		setContent('')
 	}
@@ -41,7 +43,7 @@ export default function AddComment({repositoryId}:addCommentType) {
 	<div className='mt-4'>
 		<h2 className='font-semibold text-xl'>Share Your Opinion</h2>
 		<form className='' onSubmit={onSubmit}>
-			<input type='text ' placeholder='Github Username'
+			<input type='text' placeholder='Github Username'
 					value={author} onChange={(e:React.ChangeEvent<HTMLInputElement>) => {setAuthor(e.currentTarget.value);}} />
 			{/* <label htmlFor="message" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Your message</label> */}
 			<textarea onChange={(e) => setContent(e.target.value)} id="message" value={content} rows={4} className="block p-2.5 mt-1 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Leave a comment..." />

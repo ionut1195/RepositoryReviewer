@@ -51,6 +51,15 @@ const mutation = new GraphQLObjectType({
 				});
 				return comment.save();
 			}
+		},
+		removeComment: {
+			type: CommentType,
+			args: {
+				id: {type: GraphQLNonNull(GraphQLID)}
+			},
+			resolve(parent, args){
+				return Comment.findByIdAndRemove(args.id)
+			}
 		}
 	}
 })
