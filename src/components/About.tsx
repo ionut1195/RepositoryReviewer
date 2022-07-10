@@ -11,7 +11,7 @@ export default function About() {
         <div className="container flex flex-col py-3 mx-auto md:flex-row md:justify-around">
           <div className="flex flex-col items-center justify-center mx-auto md:m-0">
             <div className='pt-10 text-white md:text-xl lg:text-2xl'><span className='font-bold text-lg md:text-2xl lg:text-3xl text-[#5c8694]'>GitHub RepositoryReviewer</span>
-              <div><br /> Is a web tool that allows You</div>
+              <div className='px-3'><br /> Is a web tool that allows You</div>
               <div>
                 <ul className='list-disc marker:text-[#003440]'>
                   <li>See one's public repositories</li>
