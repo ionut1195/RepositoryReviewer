@@ -26,30 +26,16 @@ export const GET_DATA = gql`
               color
             }
           }
+        stargazers {
+          totalCount
+        }
+        forks {
+          totalCount
+        }
+        isFork
         }
       }
     }
   }
 `
-export const GET_REPO = gql`
-  query GetRepo($repoName: String!, $userName: String!)  {
-    repository(name: $repoName, owner: $userName) {
-      id
-      name
-      url
-      stargazers {
-        totalCount
-      }
-      description
-      forks {
-        totalCount
-      }
-      isFork
-      languages (first: 2) {
-        nodes {
-          name
-        }
-      }
-    }
-  }
-`
+

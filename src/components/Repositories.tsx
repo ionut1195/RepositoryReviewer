@@ -1,10 +1,7 @@
 import React from 'react'
-import {useLazyQuery} from '@apollo/client'
-import {GET_DATA} from '../hooks/useGetRepositories'
-import {RepositoriesType, RepositoryNode} from '../types/RepositoryNode.type'
-import { User } from '../types/User.type'
+import { RepositoryNode} from '../types/RepositoryNode.type'
 import { Repository } from './Repository'
-import {gql, useQuery} from '@apollo/client'
+import {useQuery} from '@apollo/client'
 import { GET_COMMENTS } from '../hooks/useGetComments'
 
 export type Comment = {
@@ -12,10 +9,6 @@ export type Comment = {
 	author: string,
 	content: string,
 	repositoryId: string
-}
-
-type Comments = {
-	comments: Array<Comment>
 }
 
 
@@ -32,13 +25,15 @@ export default function Repositories({nodes}:RepositoriesPropType) {
 	if (loading) return <>Loading</>
 	if (error) return <>Error</>
 
-	const comments:any = data.comment
-	console.log(comments)
+	const comments:Array<Comment> = data.comment
+	// console.log(comments)
 
-  console.log(nodes)
-  const repoList = nodes.map((node) => <Repository key={node.id} node={node} comments={comments.filter((comment:any) => comment.repositoryId === node.id)}/>)
+  // console.log(nodes)
+  // const repoList = nodes.map((node) => <Repository key={node.id} node={node} comments={comments.filter((comment) => comment.repositoryId === node.id)}/>)
 
   return (
-    <div className='flex flex-col'>{repoList}</div>
+    <div className='flex flex-col'>{
+      nodes.map((node) => <Repository key={node.id} node={node} comments={comments.filter((comment) => comment.repositoryId === node.id)}/>)
+      }</div>
   )
 }

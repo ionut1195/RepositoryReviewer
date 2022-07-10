@@ -1,4 +1,4 @@
-import {FaGithub} from 'react-icons/fa'
+import {FaGithub, FaStar} from 'react-icons/fa'
 import React from "react";
 import { RepositoryNode } from "../types/RepositoryNode.type";
 import AddComment from "./AddComment"
@@ -14,52 +14,63 @@ export default function Modal({node, comments}:RepositoryPropType) {
   return (
     <>
       <button
-        className="hover:bg-blue-500 text-black hover:text-white active:bg-blue-600 font-bold uppercase text-sm px-6 py-3 rounded  hover:shadow-lg outline-none focus:outline-none mr-1 my-1 ease-linear transition-all duration-150"
+        className="px-6 py-3 my-1 mr-1 text-sm font-bold text-black uppercase transition-all duration-150 ease-linear rounded outline-none hover:bg-blue-500 hover:text-white active:bg-blue-600 hover:shadow-lg focus:outline-none"
         type="button"
         onClick={() => setShowModal(true)}
       >
-        View Details!
+        <p className='animate-pulse hover:animate-none'>view details!</p>
       </button>
       {showModal ? (
         <>
           <div
-            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+            className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none"
           >
-            <div className="relative w-auto my-6 mx-auto max-w-3xl">
+            <div className="relative w-[95vw] lg:w-[80vw] xl:w-[70vw] max-w-4xl mx-auto my-6">
               {/*content*/}
-              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+              <div className="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
                 {/*header*/}
-                <div className="flex items-start justify-between p-5 border-b border-solid border-blue-700 rounded-t">
-                  <h3 className="text-3xl font-semibold mx-auto">
+                <div className="flex items-start justify-between p-5 border-b border-blue-700 border-solid rounded-t">
+                  <h3 className="mx-auto text-3xl font-semibold">
                     {node.name}
                   </h3>
                 </div>
                 {/*body*/}
+                <div className="flex flex-col px-5 sm:flex-row sm:border-b-2 sm:border-blue-600">
+                  <div className='grid content-center w-full mx-auto border-b-2 border-blue-600 justify-items-center sm:border-none'>
+                    <div className=''>Forks</div>
+                    <div className=''>{node.forks.totalCount}</div>
+                  </div>
+                  <div className='grid content-center w-full mx-auto border-b-2 border-blue-600 justify-items-center sm:border-none'>
+                    <FaStar size={20} className='' fill='orange'/>
+                    <div className=''>{node.stargazers.totalCount}</div>
+                  </div>
+                  {node.isFork ? <div className='grid content-center w-full justify-items-center'>Forked</div> : null}
+                </div>
                 <div className="relative max-h-[50vh] overflow-scroll p-6 flex-auto">
-                  <p className="my-4 text-slate-500 text-lg leading-relaxed">
+                  <p className="my-4 text-lg leading-relaxed text-slate-500">
                     {node.description ? node.description : "This repository doesn't have a description!"}
                   </p>
                   <div className='border-1'>
-                    <h3 className='font-bold'>Comments:</h3>
-					<ul>{comments.map((comment) => 
-						<li key={comment.id}>
-							<h4 className='font-semibold border border-inherit'>{comment.author}:</h4>
-						{comment.content}</li>)}</ul>
+                    <h3 className='text-lg font-bold lg:text-2xl'>Comments:</h3>
+                    <ul>{comments.map((comment) => 
+                      <li key={comment.id}>
+                        <h4 className='text-lg font-semibold text-gray-400 border-b lg:text-xl border-inherit'>{comment.author}:</h4>
+                      <p className='py-2'>{comment.content}</p></li>)}</ul>
                   </div>
-				  <AddComment repositoryId={node.id}/>
+                  <AddComment repositoryId={node.id}/>
                 </div>
                 {/*footer*/}
-                <div className="flex items-center justify-between p-3 border-t border-solid border-blue-700 rounded-b">
-                    <div className='flex items-center flex-col'>
-                        <p className=" text-slate-500 text-lg leading-relaxed">
+                <div className="flex items-center justify-between p-3 border-t border-blue-700 border-solid rounded-b">
+                    <div className='flex flex-col items-center'>
+                        <p className="text-lg leading-relaxed text-slate-500">
                         See on
                         </p>
-                        <a href={node.url} target={'_blank'} rel="noreferrer">
-                            <FaGithub />
+                        <a className='' href={node.url} target={'_blank'} rel="noreferrer">
+                            <FaGithub size={26} />
                         </a>
                     </div>
                     <button
-                        className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                        className="px-6 py-2 mb-1 mr-1 text-sm font-bold text-red-500 uppercase transition-all duration-150 ease-linear rounded-lg outline-none hover:bg-red-600 hover:text-white background-transparent focus:outline-none"
                         type="button"
                         onClick={() => setShowModal(false)}
                         >
@@ -69,7 +80,7 @@ export default function Modal({node, comments}:RepositoryPropType) {
               </div>
             </div>
           </div>
-          <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+          <div className="fixed inset-0 z-40 bg-black opacity-25"></div>
         </>
       ) : null}
     </>
