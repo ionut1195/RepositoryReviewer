@@ -19,7 +19,7 @@ const authLink = setContext((_, { headers }) => {
 })
 
 const commentsLink = createHttpLink({
-	uri: 'http://localhost:5000/graphql'
+	uri: 'https://repo-reviewer-b.herokuapp.com/graphql'
 })
 
 const client = new ApolloClient({

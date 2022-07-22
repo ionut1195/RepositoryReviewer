@@ -21,6 +21,7 @@ export default function DefaultComponent({getData, handleSetUserName}:any) {
         <div className='max-w-[1080px] mx-3 sm:mx-auto my-4'>
           <Search getLazyData={getData} handleSetUserName={handleSetUserName} />
         </div>
+        <section title='hero'>
         <div className='bg-[#040116]'>
           <div className="flex relative justify-center mx-auto overflow-hidden lg:container h-[60vh]">
             <img className='object-cover w-full h-auto mx-auto shadow-2xl' src={require('../assets/hero.jpg')} alt="" />
@@ -43,6 +44,7 @@ export default function DefaultComponent({getData, handleSetUserName}:any) {
             </div>
           </div>
         </div>
+        </section>
         <About />
         <Footer />
       </div>

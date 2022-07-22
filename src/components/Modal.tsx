@@ -14,11 +14,11 @@ export default function Modal({node, comments}:RepositoryPropType) {
   return (
     <>
       <button
-        className="px-6 py-3 my-1 mr-1 text-sm font-bold text-black uppercase transition-all duration-150 ease-linear rounded outline-none hover:bg-blue-500 hover:text-white active:bg-blue-600 hover:shadow-lg focus:outline-none"
+        className="px-6 py-3 my-1 mr-1 text-sm font-bold text-black uppercase bg-blue-400 transition-all duration-150 ease-linear rounded outline-none hover:bg-blue-500 hover:text-white active:bg-blue-600 hover:shadow-lg focus:outline-none"
         type="button"
         onClick={() => setShowModal(true)}
       >
-        <p className='animate-pulse hover:animate-none'>view details!</p>
+        <p className='animate-pulse  hover:animate-none'>view details!</p>
       </button>
       {showModal ? (
         <>

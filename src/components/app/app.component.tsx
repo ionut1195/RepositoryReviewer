@@ -43,14 +43,6 @@ const App = () => {
   return (
   <div>
     <DefaultComponent getData={getData} handleSetUserName={handleSetUserName} />
-    {/* <div className="container mx-auto">
-    <div className="flex items-center ">
-      <FaGithub className="hidden w-10 h-auto md:flex md:w-16 justify-self-center"  />
-      <h1 className="pl-3 mx-auto text-3xl md:text-4xl">Repository Reviewer</h1>
-    </div>
-    </div>
-    <Search getLazyData={getData} handleSetUserName={handleSetUserName} />
-     */}
   </div>
   )
 }

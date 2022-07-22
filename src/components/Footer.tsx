@@ -5,7 +5,7 @@ export default function  Footer() {
   return (
     <section title='footer' className=''>
 
-      <div className="fixed bg-[#003440] w-full py-4  bottom-0 flex">
+      <div className=" bg-[#003440] w-full py-4  bottom-0 flex">
         <div className="container flex justify-center mx-auto gap-x-8">
           <a href="https://github.com/ionut1195" rel="noreferrer" target={'_blank'}>
             <FaGithub size={26} className='fill-white' />

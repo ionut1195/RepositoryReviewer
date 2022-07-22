@@ -1,4 +1,3 @@
-import React from 'react'
 import { RepositoryNode} from '../types/RepositoryNode.type'
 import { Repository } from './Repository'
 import {useQuery} from '@apollo/client'
@@ -10,7 +9,6 @@ export type Comment = {
 	content: string,
 	repositoryId: string
 }
-
 
 type RepositoriesPropType = {
   nodes: Array<RepositoryNode>
@@ -26,11 +24,6 @@ export default function Repositories({nodes}:RepositoriesPropType) {
 	if (error) return <>Error</>
 
 	const comments:Array<Comment> = data.comment
-	// console.log(comments)
-
-  // console.log(nodes)
-  // const repoList = nodes.map((node) => <Repository key={node.id} node={node} comments={comments.filter((comment) => comment.repositoryId === node.id)}/>)
-
   return (
     <div className='flex flex-col'>{
       nodes.map((node) => <Repository key={node.id} node={node} comments={comments.filter((comment) => comment.repositoryId === node.id)}/>)
